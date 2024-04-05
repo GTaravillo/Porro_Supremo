@@ -8,7 +8,6 @@
 #include <pthread.h>
 #include <signal.h>
 
-
 #define TCS34725_I2C_ADDR 0x29
 #define TCS34725_ENABLE_REG 0x03
 #define TCS34725_CMD_REG 0x80
@@ -84,11 +83,10 @@ void medir(int fd){
   }
 
   char reg = TCS34725_CMD_REG_RD + TCS34725_COLOR_OUT;
-  char accel_data[6];
+  char color_data[6];
 
   while(33){
-    // Read accelerometer data
-
+    // Read color sensor data
 
     messages[0].addr = addr;
     messages[0].flags = 0;
@@ -97,8 +95,8 @@ void medir(int fd){
 
     messages[1].addr = addr;
     messages[1].flags = I2C_M_RD;
-    messages[1].len = sizeof(accel_data);
-    messages[1].buf = accel_data;
+    messages[1].len = sizeof(color_data);
+    messages[1].buf = color_data;
 
     packets.msgs = messages;
     packets.nmsgs = 2;
@@ -109,17 +107,13 @@ void medir(int fd){
 
     // Convert the accelerometer data
 
-    short ax = (accel_data[0] << 8) | accel_data[1];
-    short ay = (accel_data[2] << 8) | accel_data[3];
-    short az = (accel_data[4] << 8) | accel_data[5];
-
-    float ax_m_s2 = ax; 
-    float ay_m_s2 = ay ;
-    float az_m_s2 = az;
+    __int16_t Red = (color_data[0] << 8) | color_data[1];
+    __int16_t Green = (color_data[2] << 8) | color_data[3];
+    __int16_t Blue = (color_data[4] << 8) | color_data[5];
 
     // Print the accelerometer data
     system("clear");
-    printf("Accelerometer data:\n ax=%.2f m/s², ay=%.2f m/s², az=%.2f m/s² \n", ax_m_s2, ay_m_s2, az_m_s2);
+    printf("Red: %d   Green: %d   Blue: %d", Red, Green , Blue);
     /*if((ax_m_s2 && ay_m_s2) == 0){
       printf("Sensor desconectado");
 
