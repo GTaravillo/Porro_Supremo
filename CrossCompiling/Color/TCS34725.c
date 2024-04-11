@@ -126,22 +126,15 @@ void medir(){
       }
     }
 
-<<<<<<< HEAD
-    // Convert the color sensor data
-=======
     // Convert the color data
->>>>>>> 43b8236 (Final)
 
     __uint16_t Light = ((color_data[0] << 8) | color_data[1])/256;
     __uint16_t Red = ((color_data[2] << 8) | color_data[3])/256;
     __uint16_t Green = ((color_data[4] << 8) | color_data[5])/256;
     __uint16_t Blue = ((color_data[6] << 8) | color_data[7])/256;
 
-<<<<<<< HEAD
-    // Print the color sensor data
-=======
     // Print the color data
->>>>>>> 43b8236 (Final)
+
     system("clear");
     printf("Light intensity: %d   Red: %d   Green: %d   Blue: %d\n", Light, Red, Green, Blue);
     printf("Color: ");
