@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <MPU6000.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
@@ -47,7 +46,7 @@ int main(void){
     return 1;
   }
 
-  printf("ANCELAO \n");
+  printf("ANCEL \n");
 
   close(fd);
 
@@ -63,7 +62,9 @@ void medir(){
   int device = 1;
   int addr = 0x68;
 
-  printf("hello and welcome to the i2c test");
+  printf("Hello and welcome to the accelerometer program\n");
+  fflush(stdout);
+  sleep(1);
   sprintf(i2cFile, "/dev/i2c-%d", device);
   fd = open(i2cFile,O_RDWR);
   ioctl(fd,I2C_SLAVE,addr);

@@ -63,7 +63,7 @@ void medir(){
   int device = 1;
   int addr = TCS34725_I2C_ADDR;
 
-  printf("Hello and welcome to the i2c test\n");
+  printf("Hello and welcome to the color sensor program\n");
   fflush(stdout);
   sleep(1);
   sprintf(i2cFile, "/dev/i2c-%d", device);
@@ -126,14 +126,22 @@ void medir(){
       }
     }
 
+<<<<<<< HEAD
     // Convert the color sensor data
+=======
+    // Convert the color data
+>>>>>>> 43b8236 (Final)
 
     __uint16_t Light = ((color_data[0] << 8) | color_data[1])/256;
     __uint16_t Red = ((color_data[2] << 8) | color_data[3])/256;
     __uint16_t Green = ((color_data[4] << 8) | color_data[5])/256;
     __uint16_t Blue = ((color_data[6] << 8) | color_data[7])/256;
 
+<<<<<<< HEAD
     // Print the color sensor data
+=======
+    // Print the color data
+>>>>>>> 43b8236 (Final)
     system("clear");
     printf("Light intensity: %d   Red: %d   Green: %d   Blue: %d\n", Light, Red, Green, Blue);
     printf("Color: ");
@@ -145,7 +153,7 @@ void medir(){
       printf("Cyan\n");
     }else if(Red > 175 && Green > 175 && Blue < 100){
       printf("Yellow\n");
-    }else if(Red > 175 && Green < 100 && Blue > 175){
+    }else if(Red > 175 && Green < 100 && Blue > 150){
       printf("Fuchsia\n");
     }else if(Red < 100 && Green < 100 && Blue > 175){
       printf("Blue\n");
